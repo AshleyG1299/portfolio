@@ -4,7 +4,6 @@ void setup() {
 }
 
 void draw() {
-//add your own code here to make shapes : )
       colorMode(RGB,255);
       strokeWeight(random(5));
       stroke(random(150,255));

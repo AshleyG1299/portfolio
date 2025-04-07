@@ -1,0 +1,158 @@
+// Credits to CHATGPT. I provided prompts and it gave me back codes.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spotify US Top 10 Trends (Line Chart)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: sans-serif;
+    }
+
+    #chartContainer {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1em;
+      box-sizing: border-box;
+      background: #f9f9f9;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="chartContainer">
+    <canvas id="spotifyChart"></canvas>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('spotifyChart').getContext('2d');
+
+    const data = {
+      labels: ["2025-03-30", "2025-03-31", "2025-04-01", "2025-04-02", "2025-04-03", "2025-04-04", "2025-04-05", "2025-04-06", "2025-04-07"],
+      datasets: [
+        {
+          label: "luther (with sza) — Kendrick Lamar, SZA",
+          data: [1527809, 1525909, 1580133, 1535674, 1458412, 1420545, 1563469, 1483783, 1475730],
+          borderColor: "#e6194b",
+          fill: false
+        },
+        {
+          label: "NOKIA — Drake",
+          data: [1430065, 1456022, 1540626, 1666536, 1611397, 1241221, 1333791, 1376000, 1352870],
+          borderColor: "#3cb44b",
+          fill: false
+        },
+        {
+          label: "Dark Thoughts — Lil Tecca",
+          data: [1383284, 1349559, 1302861, 1274015, 1156081, 1249923, 1388727, 1368975, 1328506],
+          borderColor: "#ffe119",
+          fill: false
+        },
+        {
+          label: "Die With A Smile — Lady Gaga, Bruno Mars",
+          data: [1021093, 1047622, 1035407, 1014827, 1012985, 1008657, 1020479, 1015515, 1011047],
+          borderColor: "#4363d8",
+          fill: false
+        },
+        {
+          label: "twilight zone — Ariana Grande",
+          data: [998214, 1005043, 1011753, 1014366, 1008685, 1008544, 1007934, 1003539, 1000863],
+          borderColor: "#f58231",
+          fill: false
+        },
+        {
+          label: "tv off (feat. lefty gunplay) — Kendrick Lamar, Lefty Gunplay",
+          data: [1025321, 1010011, 1004955, 1012917, 1025742, 994027, 993815, 987557, 981082],
+          borderColor: "#911eb4",
+          fill: false
+        },
+        {
+          label: "Just In Case — Morgan Wallen",
+          data: [979352, 980712, 978065, 970139, 956435, 974708, 987402, 985373, 983208],
+          borderColor: "#46f0f0",
+          fill: false
+        },
+        {
+          label: "Anxiety — Doechii",
+          data: [956901, 950210, 946729, 937882, 931408, 946049, 952144, 951938, 951253],
+          borderColor: "#f032e6",
+          fill: false
+        },
+        {
+          label: "Sports car — Tate McRae",
+          data: [943115, 936112, 929773, 925318, 922192, 931621, 933555, 932141, 930491],
+          borderColor: "#bcf60c",
+          fill: false
+        },
+        {
+          label: "Pink Pony Club — Chappell Roan",
+          data: [921347, 918005, 913734, 910872, 904147, 899176, 897602, 894895, 892420],
+          borderColor: "#fabebe",
+          fill: false
+        }
+      ]
+    };
+
+    const config = {
+      type: 'line',
+      data: data,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          mode: 'index',
+          intersect: false
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'Top 10 Spotify US Songs – Stream Trends with Forecast (Line Chart)'
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.dataset.label + ': ' + context.formattedValue + ' streams';
+              }
+            }
+          },
+          legend: {
+            position: 'bottom',
+            labels: {
+              usePointStyle: true
+            }
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Date'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Streams'
+            }
+          }
+        }
+      }
+    };
+
+    new Chart(ctx, config);
+  </script>
+</body>
+</html>
